@@ -130,6 +130,11 @@
 //    appDelegate.mIsActivityHome = NO;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -383,7 +388,13 @@
     CGSize maximumLabelSize = CGSizeMake(270, 9999); // this width will be as per your requirement
     CGFloat titleHeight = [calculationView sizeThatFits:maximumLabelSize].height;
     
-    height += (titleHeight + 110.0);
+    titleHeight = [self getHeightForText:art.title withFont:TITLE_FONT andWidth:270];
+    
+    if(art.thumb.height != 1) {
+        height = (titleHeight + 299.0);
+    } else {
+        height = (titleHeight + 97.0);
+    }
 
     return height;
 }

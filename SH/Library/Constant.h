@@ -48,11 +48,11 @@
 
 #define NORMAL_BGCOLOR          [UIColor colorWithRed:236.0/255.0 green:236.0/255.0 blue:236.0/255.0 alpha:1]
 #define BUTTON_FONT             [UIFont fontWithName:@"Museo-300" size:16]
-#define TITLE_FONT              [UIFont fontWithName:@"Museo-300" size:26]
+#define TITLE_FONT              [UIFont fontWithName:@"Museo-300" size:28]
 
 #define ENABLE_NOTI             @"Enable_notification"
 
-#define LINE_SPACING            6
+#define LINE_SPACING            4
 #define NORMAL_FONT             [UIFont fontWithName:@"Arial" size:14]
 
 @end

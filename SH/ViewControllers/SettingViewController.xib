@@ -55,7 +55,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="HQR-WO-ThK" userLabel="Notifications">
-                    <rect key="frame" x="0.0" y="99" width="320" height="43"/>
+                    <rect key="frame" x="0.0" y="98" width="320" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text_boader_light_gray.png" id="8c9-X8-Uav">
@@ -65,7 +65,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lbl-Qa-Q44">
                             <rect key="frame" x="12" y="11" width="158" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="15"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -80,15 +80,15 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NbJ-n0-5B3">
-                    <rect key="frame" x="15" y="147" width="291" height="58"/>
+                    <rect key="frame" x="15" y="146" width="291" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <string key="text">SoapHub Notify alerts you of new and trending Soap stories, so that you always know what goes on off-screen and on-screen of your favorite Soap Opera.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.4514508928571429" green="0.4514508928571429" blue="0.4514508928571429" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="48V-hJ-nNo" userLabel="Newsletter">
-                    <rect key="frame" x="0.0" y="222" width="320" height="43"/>
+                    <rect key="frame" x="0.0" y="221" width="320" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text_boader_light_gray.png" id="iQA-il-Jbl">
@@ -116,14 +116,14 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up for and manage your SoapHub newsletter subscriptions." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uUz-2u-Xtk">
-                    <rect key="frame" x="15" y="270" width="291" height="30"/>
+                    <rect key="frame" x="15" y="269" width="291" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.4514508928571429" green="0.4514508928571429" blue="0.4514508928571429" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="rj1-Sm-M6Z" userLabel="Commenting">
-                    <rect key="frame" x="0.0" y="317" width="320" height="43"/>
+                    <rect key="frame" x="0.0" y="314" width="320" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text_boader_light_gray.png" id="bvq-mm-Eog">
@@ -162,14 +162,14 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please let us know what you think of SoapHub and this app!" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5d9-nx-gFj">
-                    <rect key="frame" x="15" y="441" width="291" height="39"/>
+                    <rect key="frame" x="15" y="438" width="291" height="39"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.4514508928571429" green="0.4514508928571429" blue="0.4514508928571429" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" id="i3e-5x-hM0" userLabel="Feedback">
-                    <rect key="frame" x="0.0" y="397" width="320" height="43"/>
+                    <rect key="frame" x="0.0" y="394" width="320" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="text_boader_light_gray.png" id="nPg-Wn-iJT">
@@ -197,17 +197,17 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You must be logged in to make comments." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Af-z5-XT9">
-                    <rect key="frame" x="15" y="361" width="291" height="26"/>
+                    <rect key="frame" x="15" y="358" width="291" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.4514508928571429" green="0.4514508928571429" blue="0.4514508928571429" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FoP-kT-TSA">
-                    <rect key="frame" x="58" y="528" width="86" height="30"/>
+                    <rect key="frame" x="58" y="526" width="86" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Disclaimer">
-                        <color key="titleColor" red="0.91764705882352937" green="0.25490196078431371" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -215,10 +215,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k9J-5f-kjV">
-                    <rect key="frame" x="155" y="528" width="106" height="30"/>
+                    <rect key="frame" x="155" y="526" width="106" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Privacy Policy">
-                        <color key="titleColor" red="0.91764705879999997" green="0.25490196079999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.91764705882352937" green="0.18823529411764706" blue="0.15294117647058825" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
@@ -226,7 +226,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="138" y="154"/>
         </view>

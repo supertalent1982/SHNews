@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.mobile.sh</string>
+	<string>com.mobile.soaphub</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -23,14 +23,33 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb258974730962988</string>
+				<string>fb894164697272145</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>5008974807a1df6cb2daa21e34358d08648541cc</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict>
+					<key>consumerKey</key>
+					<string>4UYUWLkK8jVvdZxyyQqtsmeSq</string>
+					<key>consumerSecret</key>
+					<string>Qd1i7elk7du40PSCm5COaB4mA3LXKcCdsGke6C7bCHFtoTaO77</string>
+				</dict>
+				<key>KitName</key>
+				<string>Twitter</string>
+			</dict>
+		</array>
+	</dict>
 	<key>FacebookAppID</key>
-	<string>258974730962988</string>
+	<string>894164697272145</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
@@ -41,6 +60,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

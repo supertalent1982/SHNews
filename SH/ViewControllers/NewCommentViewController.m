@@ -47,18 +47,23 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    if(self.isPosting) {
-//        [self.activity startAnimating];
-//        [self.busyView setAlpha:1];
-//        [self postComment];
-//    } else {
+    if(self.isPosting) {
+        [self.activity startAnimating];
+        [self.busyView setAlpha:1];
+        [self postComment];
+    } else {
         [self startEditingComment];
-//    }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)getClientResponse:(NSDictionary *)response
@@ -167,7 +172,6 @@
     } else if(alertView.tag == 202) {
         [self.navigationController popViewControllerAnimated:YES];
     }
-    return;
 }
 
 #pragma UITextViewDelegate
@@ -191,7 +195,7 @@
 
 - (void)endEditingComment {
     [self.commentText resignFirstResponder];
-    [self.commentText setFrame:CGRectMake(self.commentText.frame.origin.x, self.commentText.frame.origin.y, self.commentText.frame.size.width, 423.0)];
+    [self.commentText setFrame:CGRectMake(self.commentText.frame.origin.x, self.commentText.frame.origin.y, self.commentText.frame.size.width, 440.0)];
 }
 
 - (IBAction)onCancel:(id)sender {

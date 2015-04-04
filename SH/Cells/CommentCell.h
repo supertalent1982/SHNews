@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *line;
 
 - (void)loadImage:(Comment *)comment;
 - (void)layoutRefresh:(Comment *)comment;

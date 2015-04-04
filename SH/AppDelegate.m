@@ -14,6 +14,9 @@
 #import "Constant.h"
 
 #import <FacebookSDK/FacebookSDK.h>
+#import <TwitterKit/TwitterKit.h>
+#import <Fabric/Fabric.h>
+
 
 @interface AppDelegate ()
 
@@ -29,6 +32,9 @@
 @synthesize mAddApiIndex;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+
+    [Fabric with:@[TwitterKit]];
     
     self.deviceToken = @"";
     self.mIsStartedTimer = NO;
@@ -557,7 +563,7 @@
         
         NSDictionary *thumbnail_images = [article objectForKey:@"thumbnail_images"];
         if(![thumbnail_images isEqual:[NSNull null]]) {
-            NSDictionary *thumbDic = [thumbnail_images objectForKey:@"thumbnail"];
+            NSDictionary *thumbDic = [thumbnail_images objectForKey:@"full"];
             if(thumbDic) {
                 a.thumb.url = [thumbDic objectForKey:@"url"];
                 a.thumb.width = [[thumbDic objectForKey:@"width"] integerValue];

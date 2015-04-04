@@ -35,6 +35,8 @@
 
 @property (nonatomic, strong) UIView *paraView;
 
+@property (nonatomic, strong) UIImageView *thumbImage;
+
 @end
 
 @implementation ArticleViewController
@@ -85,6 +87,11 @@
     [self.tableview reloadData];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)loadArticle {
     
     
@@ -120,12 +127,12 @@
     paraView = [[UIView alloc] init];
     UILabel *lineLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0, 0.0, LABELWIDTH, 1.0)];
     [lineLabel setText:@""];
-    [lineLabel setBackgroundColor:[UIColor grayColor]];
+    [lineLabel setBackgroundColor:[UIColor colorWithRed:184.0f/255.0f green:184.0f/255.0f blue:184.0f/255.0f alpha:1.0]];
     [paraView addSubview:lineLabel];
     
-    UIFont *paraFont = [UIFont systemFontOfSize:16];
-    UIColor *paraColor = [UIColor grayColor];
-    CGFloat yPoint = 30.0;
+    UIFont *paraFont = [UIFont fontWithName:@"Arial" size:17];
+    UIColor *paraColor = [UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0];
+    CGFloat yPoint = 20.0;
     CGFloat xPoint = 15.0;
     
     for(int i = 0; i < paraArr.count; i++) {
@@ -137,7 +144,7 @@
         [pLabel setTextColor:paraColor];
         
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.lineSpacing = LINE_SPACING;
+        paragraphStyle.lineSpacing = 7;
         
         NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:para];
         [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, para.length)];
@@ -152,19 +159,19 @@
         
         [paraView addSubview:pLabel];
         
-        yPoint += (labelHeight + 30.0);
+        yPoint += (labelHeight + 36.0);
         
         if(i == (paraArr.count - 1)) {
-            yPoint += 10.0;
+            yPoint += 0.0;
             [self.btnSee setFrame:CGRectMake(0, yPoint, self.btnSee.frame.size.width, self.btnSee.frame.size.height)];
             [paraView addSubview:self.btnSee];
             
-            yPoint += (self.btnSee.frame.size.height + 30);
+            yPoint += (self.btnSee.frame.size.height + 28);
             
             [self.btnShowComment setFrame:CGRectMake(0, yPoint, self.btnShowComment.frame.size.width, self.btnShowComment.frame.size.height)];
             [paraView addSubview:self.btnShowComment];
             
-            yPoint += (self.btnShowComment.frame.size.height + 40);
+            yPoint += (self.btnShowComment.frame.size.height + 34);
         } else {
             ADBannerView *adView = [[ADBannerView alloc] initWithAdType:ADAdTypeMediumRectangle];
             adView.delegate = self;
@@ -172,7 +179,7 @@
             [adView setBackgroundColor:[UIColor clearColor]];
             [paraView addSubview:adView];
             
-            yPoint += 270;
+            yPoint += 288;
         }
     }
     
@@ -182,7 +189,7 @@
     [adView setBackgroundColor:[UIColor clearColor]];
     [paraView addSubview:adView];
     
-    yPoint += 280;
+    yPoint += 250;
     
     [paraView setFrame:CGRectMake(10, profileHeight, 300, yPoint+10)];
     [self.scrollView addSubview:paraView];
@@ -250,7 +257,11 @@
     
     CGFloat imageHeight = [self loadImage:mArt.thumb];
     
-    CGFloat pHeight = imageHeight + 15.0;
+    CGFloat pHeight = 202 + 17.0;
+    if(mArt.thumb.height == 1) {
+        pHeight = 17.0;
+        [self.thumbView setFrame:CGRectMake(0, 0, 320, 0)];
+    }
     
     [self.titleLabel setFont:TITLE_FONT];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -259,27 +270,43 @@
     [self.titleLabel setNumberOfLines:0];
     NSMutableAttributedString *attrText = [[NSMutableAttributedString alloc] initWithString:mArt.title];
     [attrText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, mArt.title.length)];
-    [self.titleLabel setAttributedText:attrText];
-    
+//    [self.titleLabel setAttributedText:attrText];
+
+    [self.titleLabel setText:mArt.title];
     CGSize maximumLabelSize = CGSizeMake(LABELWIDTH, 9999); // this width will be as per your requirement
     CGFloat titleHeight = [self.titleLabel sizeThatFits:maximumLabelSize].height;
+//    titleHeight = [self getHeightForText:mArt.title withFont:TITLE_FONT andWidth:LABELWIDTH];
     
     [self.titleLabel setFrame:CGRectMake(self.titleLabel.frame.origin.x, pHeight, LABELWIDTH, titleHeight)];
     
-    pHeight += (titleHeight + 15);
+    pHeight += (titleHeight + 6);
     
+    NSDictionary *attribs = @{
+                              NSForegroundColorAttributeName: [UIColor colorWithRed:153.0f/255.0f green:153.0f/255.0f blue:153.0f/255.0f alpha:1.0],
+                              NSFontAttributeName: [UIFont fontWithName:@"Arial" size:10.0]
+                              };
     NSString *authorString = [[NSString stringWithFormat:@"BY %@ / %@", mArt.author.name, [self getCategorieName:mArt.categorieArray]] uppercaseString];
+    NSString *subString = [NSString stringWithFormat:@"BY %@", mArt.author.name];
     
-    NSRange range = [self.authorLabel.text rangeOfString:[[NSString stringWithFormat:@"BY %@", mArt.author.name] uppercaseString]];
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:authorString];
-    [attributedText addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:85.0f / 255.0f green:85.0f / 255.0f blue:85.0f / 255.0f alpha:1.0f] range:range];
-    [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, authorString.length)];
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:authorString attributes:attribs];
+    NSRange selectedRange = NSMakeRange(0, subString.length); // 4 characters, starting at index 22
+    
+    [attributedText setAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:102.0f/255.0f green:102.0f/255.0f blue:102.0f/255.0f alpha:1.0],                                   NSFontAttributeName: [UIFont fontWithName:@"Arial-BoldMT" size:10.0]} range:selectedRange];
+    
+//    [attributedText beginEditing];
+//    
+//    [attributedText addAttribute:NSFontAttributeName
+//                       value:[UIFont fontWithName:@"Arial-Bold" size:9.0]
+//                       range:selectedRange];
+//    
+//    [attributedText endEditing];
+    
     self.authorLabel.attributedText = attributedText;
     
-    CGFloat authorHeight = [self.authorLabel sizeThatFits:maximumLabelSize].height;
+    CGFloat authorHeight = [self getHeightForText:authorString withFont:[UIFont fontWithName:@"Arial" size:10.0] andWidth:LABELWIDTH];
     [self.authorLabel setFrame:CGRectMake(self.authorLabel.frame.origin.x, pHeight, self.authorLabel.frame.size.width, authorHeight)];
     
-    pHeight += (authorHeight + 15);
+    pHeight += (authorHeight + 12);
     
     return pHeight;
 }
@@ -294,21 +321,30 @@
     CGFloat orgHeight = thumbnail.height;
     
     CGFloat width = 320;
-    CGFloat height = orgHeight * 320 / orgWidth;
+    CGFloat height = orgHeight * 320.0f / orgWidth;
+    if(height < 202) {
+        height = 202.0f;
+        width = orgWidth * 202.0f / orgHeight;
+    }
     
-    [self.thumbnailImage setFrame:CGRectMake(0, 0, width, height)];
+    self.thumbImage = [[UIImageView alloc] init];
+    [self.thumbImage setFrame:CGRectMake((320.0-width)/2.0f, 0, width, height)];
+    //    [self.thumbView setFrame:CGRectMake(0, 0, width, height)];
+    [self.thumbView addSubview:self.thumbImage];
     
-    activityIndicatorView.center = self.thumbnailImage.center;
-    [_thumbnailImage addSubview:activityIndicatorView];
+//    [self.thumbnailImage setFrame:CGRectMake(0, 0, width, height)];
+    
+    activityIndicatorView.center = self.thumbImage.center;
+    [self.thumbImage addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
     
     
     NSURL *profilePicUrl=[NSURL URLWithString:thumbnail.url];
-    [_thumbnailImage setImageWithURLRequest:[WebServiceAPI imageRequestWithURL:profilePicUrl]
+    [self.thumbImage setImageWithURLRequest:[WebServiceAPI imageRequestWithURL:profilePicUrl]
                            placeholderImage:nil
                                     success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                         if (image) {
-                                            _thumbnailImage.image = image;
+                                            self.thumbImage.image = image;
                                         }
                                         [activityIndicatorView removeFromSuperview];
                                     }
@@ -322,22 +358,26 @@
 
 -(float) getHeightForText:(NSString*) text withFont:(UIFont*) font andWidth:(float) width{
     
-    UILabel *calculationView = [[UILabel alloc] init];
-    calculationView.numberOfLines = 0;
-    [calculationView setFont:[UIFont fontWithName:@"Arial" size:14.0]];
+    CGSize constraint = CGSizeMake(width , 20000.0f);
+    CGSize title_size;
+    float totalHeight;
     
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = LINE_SPACING;
+    SEL selector = @selector(boundingRectWithSize:options:attributes:context:);
+    if ([text respondsToSelector:selector]) {
+        title_size = [text boundingRectWithSize:constraint
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:@{ NSFontAttributeName : font }
+                                        context:nil].size;
+        
+        totalHeight = ceil(title_size.height);
+    } else {
+        title_size = [text sizeWithFont:font
+                      constrainedToSize:constraint
+                          lineBreakMode:NSLineBreakByWordWrapping];
+        totalHeight = title_size.height ;
+    }
     
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:text];
-    [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, text.length)];
-    
-    [calculationView setAttributedText:attributedText];
-    CGSize maximumLabelSize = CGSizeMake(LABELWIDTH, 9999); // this width will be as per your requirement
-    
-    CGSize textRect = [calculationView sizeThatFits:maximumLabelSize];
-    
-    CGFloat height = textRect.height;
+    CGFloat height = MAX(totalHeight, 32.0f);
     return height;
 }
 
@@ -458,7 +498,7 @@
 
 - (IBAction)onShareBtn:(id)sender {
     NSString* text = mArt.title;
-    UIImage* image = self.thumbnailImage.image;
+    UIImage* image = self.thumbImage.image;
     NSURL *url = [NSURL URLWithString:mArt.url];
     
     UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[text, url, image] applicationActivities:nil];

@@ -15,7 +15,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil art:(Article *)art;
 
-@property (weak, nonatomic) IBOutlet UIImageView *thumbnailImage;
+@property (weak, nonatomic) IBOutlet UIView *thumbView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UIView *profileView;

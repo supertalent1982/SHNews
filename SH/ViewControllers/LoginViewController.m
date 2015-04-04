@@ -11,6 +11,8 @@
 #import "HomeViewController.h"
 
 #import <FacebookSDK/FacebookSDK.h>
+#import <TwitterKit/TwitterKit.h>
+#import <Social/Social.h>
 
 @interface LoginViewController ()
 
@@ -23,12 +25,16 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.busyView setAlpha:0];
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)goLogin {
@@ -244,6 +250,42 @@
 }
 
 - (void)loginWithTwitter {
+    [self.activity startAnimating];
+    [self.busyView setAlpha:1];
+    
+    [[Twitter sharedInstance] logInWithCompletion:^
+     (TWTRSession *session, NSError *error) {
+         if (session) {
+             NSLog(@"signed in as %@, %@", [session userName], [session userID]);
+             [[[Twitter sharedInstance] APIClient] loadUserWithID:[session userID]
+                                                       completion:^(TWTRUser *user,
+                                                                    NSError *error)
+              {
+                  // handle the response or error
+                  if (!error){
+                      [[NSUserDefaults standardUserDefaults] setObject:user.screenName forKey:USERNAME];
+                      [[NSUserDefaults standardUserDefaults] setObject:user.name forKey:USEREMAIL];
+                      [[NSUserDefaults standardUserDefaults] synchronize];
+                      
+                      [self.activity stopAnimating];
+                      [self.busyView setAlpha:0];
+                      
+                      [self.navigationController popViewControllerAnimated:YES];
+                  }
+                  else{
+                      [self.activity stopAnimating];
+                      [self.busyView setAlpha:0];
+                      
+                      [[[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Login Error : %@", error] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+                  }
+              }];
+         } else {
+             [self.activity stopAnimating];
+             [self.busyView setAlpha:0];
+             
+             [[[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Login Error : %@", error] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+         }
+     }];
 }
 
 /*
@@ -261,6 +303,7 @@
 }
 
 - (IBAction)onTwitterLogin:(id)sender {
+    [self loginWithTwitter];
 }
 
 - (IBAction)onReturnKeyboard:(id)sender {

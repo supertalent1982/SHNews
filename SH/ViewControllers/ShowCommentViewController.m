@@ -47,7 +47,7 @@ NSString *const CommentTableViewCellIdentifier = @"CommentCell";
     self.referenceCell = [[NSBundle mainBundle] loadNibNamed:CommentTableViewCellIdentifier owner:self options:nil][0];
     
     __weak ShowCommentViewController *weakSelf = self;
-
+    
     // setup pull-to-refresh
     [self.tableview addPullToRefreshWithActionHandler:^{
         [weakSelf refreshComment];
@@ -63,6 +63,11 @@ NSString *const CommentTableViewCellIdentifier = @"CommentCell";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)refreshComment {
@@ -146,10 +151,10 @@ NSString *const CommentTableViewCellIdentifier = @"CommentCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Comment *comment = [mArt.commentArray objectAtIndex:indexPath.row];
-    CGFloat yPoint = 18.0f;
+    CGFloat yPoint = 20.0f;
     // Name label
     CGFloat nameHeight = [self getHeightForText:comment.name.uppercaseString withFont:[UIFont fontWithName:@"Arial" size:17.0] andWidth:228.0];
-    yPoint += (nameHeight + 7 + 18 + 7);
+    yPoint += (nameHeight + 9 + 18 + 16);
 
     UILabel *commentLabel = [[UILabel alloc] init];
     commentLabel.numberOfLines = 0;
@@ -158,7 +163,7 @@ NSString *const CommentTableViewCellIdentifier = @"CommentCell";
     NSString *commentStr = [appDelegate replaceSpecialCharators:commentTemp];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = LINE_SPACING;
+    paragraphStyle.lineSpacing = 7.6;
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:commentStr];
     [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, commentStr.length)];
@@ -167,7 +172,7 @@ NSString *const CommentTableViewCellIdentifier = @"CommentCell";
     CGSize maximumLabelSize = CGSizeMake(228.0, 9999); // this width will be as per your requirement
     CGFloat labelHeight = [commentLabel sizeThatFits:maximumLabelSize].height;
     
-    yPoint += (labelHeight + 10);
+    yPoint += (labelHeight + 20);
 
     return yPoint;
 }

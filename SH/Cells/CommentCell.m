@@ -60,7 +60,7 @@
     CGFloat nameHeight = [self getHeightForText:comment.name.uppercaseString withFont:[UIFont fontWithName:@"Arial" size:17.0] andWidth:228.0];
     [self.nameLabel setFrame:CGRectMake(self.nameLabel.frame.origin.x, self.nameLabel.frame.origin.y, 228.0, nameHeight)];
     
-    yPoint += (nameHeight + 7);
+    yPoint += (nameHeight + 9);
     // Convert string to date object
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -73,7 +73,7 @@
     [self.dateLabel setText:[NSString stringWithFormat:@"%@ at %@", newDate, newTime]];
     [self.dateLabel setFrame:CGRectMake(self.dateLabel.frame.origin.x, yPoint, 228.0, self.dateLabel.frame.size.height)];
     
-    yPoint += (self.dateLabel.frame.size.height + 7);
+    yPoint += (self.dateLabel.frame.size.height + 16);
     
     [self.commentLabel setFont:[UIFont fontWithName:@"Arial" size:14.0]];
     [self.commentLabel setNumberOfLines:0];
@@ -81,7 +81,7 @@
     NSString *commentStr = [(AppDelegate *)[[UIApplication sharedApplication] delegate] replaceSpecialCharators:commentTemp];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = LINE_SPACING;
+    paragraphStyle.lineSpacing = 7.6;
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:commentStr];
     [attributedText addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, commentStr.length)];
@@ -90,6 +90,9 @@
     CGSize maximumLabelSize = CGSizeMake(228.0, 9999); // this width will be as per your requirement
     CGFloat labelHeight = [self.commentLabel sizeThatFits:maximumLabelSize].height;
     [self.commentLabel setFrame:CGRectMake(self.commentLabel.frame.origin.x, yPoint, 228.0, labelHeight)];
+    
+    yPoint += (labelHeight + 19);
+    [self.line setFrame:CGRectMake(self.line.frame.origin.x, yPoint, 288, 1)];
     
     //    if(comment.url.length > 0) {
     //        [self loadImage:comment];

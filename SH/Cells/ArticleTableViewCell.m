@@ -29,7 +29,7 @@
 {
     __block UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     
-    CGFloat yPoint = 0.0;
+    CGFloat yPoint = 203.0;
     CGFloat xPoint = 25.0;
     CGFloat labelWidth = 270.0;
     
@@ -37,18 +37,29 @@
     CGFloat orgHeight = art.thumb.height;
     
     CGFloat width = 320;
-    CGFloat height = orgHeight * 320 / orgWidth;
-    yPoint = height;
+    CGFloat height = orgHeight * 320.0f / orgWidth;
+    if(height < 202) {
+        height = 202.0f;
+        width = orgWidth * 202.0f / orgHeight;
+    }
+    
     
     UIImageView *thumbImage = [[UIImageView alloc] init];
-    [thumbImage setFrame:CGRectMake(0, 0, width, height)];
-    [self.thumbView setFrame:CGRectMake(0, 0, width, height)];
+    [thumbImage setFrame:CGRectMake((320.0-width)/2.0f, 0, width, height)];
+//    [self.thumbView setFrame:CGRectMake(0, 0, width, height)];
     [self.thumbView addSubview:thumbImage];
     
-    yPoint += 15.0;
-    [self.categorieLabel setFrame:CGRectMake(25, yPoint, labelWidth, 15.0)];
+    if(art.thumb.height == 1) {
+        [self.thumbView setFrame:CGRectMake(0, 0, 320, 0)];
+        yPoint = 1;
+    } else {
+        [self.thumbView setFrame:CGRectMake(0, 0, 320, 202)];
+    }
     
-    yPoint += (15.0 + 15.0);
+    yPoint += 15.0;
+    [self.categorieLabel setFrame:CGRectMake(25, yPoint, labelWidth, 9.0)];
+    
+    yPoint += (9.0 + 6.0);
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = LINE_SPACING;
     
@@ -57,17 +68,20 @@
     [self.titleLabel setAttributedText:attributedText];
     
     CGSize maximumLabelSize = CGSizeMake(labelWidth, 9999); // this width will be as per your requirement
-    CGFloat titleHeight = [self.titleLabel sizeThatFits:maximumLabelSize].height;
+    CGFloat titleHeight = [self getHeightForText:art.title withFont:TITLE_FONT andWidth:labelWidth];//= [self.titleLabel sizeThatFits:maximumLabelSize].height;
     
     [self.titleLabel setFrame:CGRectMake(xPoint, yPoint, labelWidth, titleHeight)];
     
-    yPoint += (15.0 + titleHeight);
+    yPoint += (22.0 + titleHeight);
     
-    [self.optionView setFrame:CGRectMake(xPoint, yPoint, labelWidth, 25.0)];
+    [self.optionView setFrame:CGRectMake(xPoint, yPoint, labelWidth, 9.0)];
     
     activityIndicatorView.center = self.thumbView.center;
     [thumbImage addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
+    
+
+        NSLog(@"Width = %d, Height = %d", width, height);
     
     NSURL *profilePicUrl=[NSURL URLWithString:art.thumb.url];
     [thumbImage setImageWithURLRequest:[WebServiceAPI imageRequestWithURL:profilePicUrl]
@@ -82,6 +96,30 @@
                                        [activityIndicatorView removeFromSuperview];
                                    }];
     
+}
+
+-(float) getHeightForText:(NSString*) text withFont:(UIFont*) font andWidth:(float) width{
+    CGSize constraint = CGSizeMake(width , 20000.0f);
+    CGSize title_size;
+    float totalHeight;
+    
+    SEL selector = @selector(boundingRectWithSize:options:attributes:context:);
+    if ([text respondsToSelector:selector]) {
+        title_size = [text boundingRectWithSize:constraint
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:@{ NSFontAttributeName : font }
+                                        context:nil].size;
+        
+        totalHeight = ceil(title_size.height);
+    } else {
+        title_size = [text sizeWithFont:font
+                      constrainedToSize:constraint
+                          lineBreakMode:NSLineBreakByWordWrapping];
+        totalHeight = title_size.height ;
+    }
+    
+    CGFloat height = MAX(totalHeight, 32.0f);
+    return height;
 }
 
 - (IBAction)onReadMore:(id)sender {
